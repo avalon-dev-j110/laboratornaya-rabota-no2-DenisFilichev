@@ -21,4 +21,27 @@ public class Triangle {
      * 1. Используйте наследование.
      * 2. Реализуйте все абстрактные методы.
      */
+    private float side1, side2, side3;
+
+    public void setSide1(float side1) {
+        this.side1 = side1;
+    }
+    public void setSide2(float side2) {
+        this.side2 = side2;
+    }
+    public void setSide3(float side3) {
+        this.side3 = side3;
+    }
+    
+    // метод для расчета площади треугольника
+    public float getArea(){
+        float per = (side1+side2+side2)/2;
+        double area = Math.sqrt(per*(per-side1)*(per-side2)*(per-side3));
+        return (float)area;
+    }
+    
+    // метод для расчета периметра треугольника
+    public float getPerimeter(){ 
+        return (side1+side2+side2)/2;
+    }
 }
