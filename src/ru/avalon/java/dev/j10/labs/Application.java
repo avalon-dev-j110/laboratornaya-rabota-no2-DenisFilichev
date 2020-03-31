@@ -1,46 +1,38 @@
 package ru.avalon.java.dev.j10.labs;
 
+import java.util.Random;
 import ru.avalon.java.dev.j10.labs.shapes.*;
 
 public class Application {
 
     public static void main(String[] args) {
-        Shape[] shapes = null;
-        
-        /*
-         * TODO: Выполнить действия над массивом 'shapes'
-         *
-         * 1. Проинициализировать переменную 'shapes' массивом
-         *    содержащим 10 произвольных фигур. Массив должен
-         *    содержать экземпляры классов Circle, Rectangle
-         *    и Triangle.
-         *
-         * 2. Найти в массиве 'shapes' фигуру с максимальной
-         *    площадью. Для поиска фигуры необходимо создать
-         *    статический метод в текущем классе (Application).
-         */
-                
-        System.out.println("--------Расчет круга----------");
-        Circle circle = new Circle();
-        circle.setRadius(5);
-        System.out.println("Площадь круга = " + circle.getArea());
-        System.out.println("Длина окружности = " + circle.getLength());
-        
-        System.out.println("");
-        System.out.println("--------Расчет прямоугольника----------");
-        Rectangle rectangle = new Rectangle();
-        rectangle.setSide1(2);
-        rectangle.setSide2(3);
-        System.out.println("Площадь прямоугольника = " + rectangle.getArea());
-        System.out.println("Периметр прямоугольника = " + rectangle.getPerimeter());
-        
-        System.out.println("");
-        System.out.println("--------Расчет треугольника----------");
-        Triangle triangle = new Triangle();
-        triangle.setSide1(3);
-        triangle.setSide2(4);
-        triangle.setSide3(5);
-        System.out.println("Площадь треугольника = " + triangle.getArea());
-        System.out.println("Периметр треугольника = " + triangle.getPerimeter());
+        Shape[] shapes = new Shape[10];
+        Random rand = new Random();
+     
+        // Инициализируем массив фигурами
+        for (int i=0; i<10; ++i){
+            int randShape = rand.nextInt(3);
+            switch (randShape){
+                case 0: shapes[i]=new Circle(rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(50));
+                    break;
+                case 1: shapes[i]=new Rectangle(rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(48)+1);
+                    break;
+                case 2: shapes[i]=new Triangle(rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(50), rand.nextInt(50));
+                    break;
+            }
+            System.out.println("Фигура №" + (i+1) + " " + shapes[i].toString()); // Выводим параметры фигуры
+            System.out.println();
+        }
+
+        System.out.println("Фигура с максимальной площадью = " + maxArea(shapes)); // Выводим максимальную площадь
+    }
+    
+    //Статический метод для нахождения максимальной площади
+    private static Shape maxArea(Shape[] shapes){
+        Shape maxArea = shapes[0];
+        for (int i=1; i<shapes.length; ++i){
+            maxArea = maxArea.getArea()>shapes[i].getArea() ? maxArea:shapes[i];
+        }
+        return maxArea;
     }
 }
