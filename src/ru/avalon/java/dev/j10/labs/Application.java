@@ -37,6 +37,7 @@ public class Application {
     //Статический метод для нахождения максимальной площади
     private static Shape maxArea(Shape[] shapes){
         if(shapes==null){return null;}
+        if(shapes.length==0){return null;}
         Shape maxArea = shapes[0];
         for (int i=1; i<shapes.length; ++i){
             maxArea = maxArea.getArea()>shapes[i].getArea() ? maxArea:shapes[i];
